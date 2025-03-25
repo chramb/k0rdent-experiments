@@ -142,7 +142,7 @@ We can also see extra labels added by flux to denote it is managed by it.
 
 > [!TIP]
 > To not wait for flux to re-check for changes in repo you can run
->  ```
+> ```
 > flux reconcile kustomization flux-system --with-source
 > ```
 
