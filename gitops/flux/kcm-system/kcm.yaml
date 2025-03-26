@@ -1,0 +1,24 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: kcm
+  namespace: kcm-system
+spec:
+  interval: 10m
+  url: oci://ghcr.io/k0rdent/kcm/charts/kcm
+  ref:
+    tag: 0.1.0
+---
+# helm install kcm oci://ghcr.io/k0rdent/kcm/charts/kcm --version 0.1.0 -n kcm-system --create-namespace
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kcm
+  namespace: kcm-system
+spec:
+  interval: 10m
+  releaseName: kcm
+  chartRef:
+    kind: OCIRepository
+    name: kcm
+
