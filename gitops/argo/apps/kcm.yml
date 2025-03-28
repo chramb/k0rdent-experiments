@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kcm
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: kcm
+    repoURL: ghcr.io/k0rdent/kcm/charts
+    targetRevision: 0.2.0
+  destination:
+    name: "in-cluster"
+    namespace: kcm-system
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
