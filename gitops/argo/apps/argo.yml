@@ -1,0 +1,20 @@
+# helm repo add argo https://argoproj.github.io/argo-helm	
+# helm install argocd argo/argo-cd --namespace argocd --version 5.36.1 -f values.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argo-cd
+    targetRevision: 7.8.14
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: argocd
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
